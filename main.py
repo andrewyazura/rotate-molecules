@@ -3,7 +3,7 @@ import numpy as np
 import pandas
 
 coords = pandas.read_table(
-    'input.txt',
+    'input.gjf',
     delim_whitespace=True,
     names=('atom', 'x', 'y', 'z'),
     dtype={'atom': str, 'x': np.float64, 'y': np.float64, 'z': np.float64},
