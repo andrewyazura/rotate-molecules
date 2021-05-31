@@ -7,10 +7,7 @@ import pandas
 
 def convert_gjf_to_molecule(filename):
     coords = pandas.read_table(
-        filename,
-        delim_whitespace=True,
-        names=('atom', 'x', 'y', 'z'),
-        dtype={'atom': str, 'x': np.float64, 'y': np.float64, 'z': np.float64},
+        filename, delim_whitespace=True, names=('atom', 'x', 'y', 'z')
     )
     return chemcoord.Cartesian(frame=coords)
 
@@ -68,12 +65,13 @@ def rotate_molecule_part(coords, axis, offset, angle):
     result = coords.copy()
     for index, atom in result.iterrows():
         atom_coords = np.array(atom['x':])
-        atom_coords -= offset
+        atom_coords = atom_coords - offset
 
         d = angle_between_vectors(axis, atom_coords)
         if d < math.pi / 2 or d > math.tau * 3 / 4:
             atom_coords = rotate(axis, atom_coords, angle)
-            atom_coords += offset
+            atom_coords = atom_coords + offset
+            atom_coords = np.round(atom_coords.astype(float), decimals=8)
             result.loc[index, 'x':] = atom_coords
 
     return result
@@ -91,3 +89,4 @@ if __name__ == '__main__':
             get_coords(molecule, neighbours['N']),
             math.radians(angle),
         )
+        result.to_csv(f'results/{angle}.gjf', sep=' ', index=False, header=False)
