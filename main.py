@@ -71,7 +71,6 @@ def rotate_molecule_part(coords, axis, offset, angle):
         if d < math.pi / 2 or d > math.tau * 3 / 4:
             atom_coords = rotate(axis, atom_coords, angle)
             atom_coords = atom_coords + offset
-            atom_coords = np.round(atom_coords.astype(float), decimals=8)
             result.loc[index, 'x':] = atom_coords
 
     return result
@@ -89,4 +88,10 @@ if __name__ == '__main__':
             get_coords(molecule, neighbours['N']),
             math.radians(angle),
         )
-        result.to_csv(f'results/{angle}.gjf', sep=' ', index=False, header=False)
+        result.to_csv(
+            f'results/{angle}.gjf',
+            sep=' ',
+            float_format='%.8f',
+            index=False,
+            header=False,
+        )
