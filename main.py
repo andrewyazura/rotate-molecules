@@ -44,31 +44,50 @@ def find_atom_with_neighbours(molecule, atom=None, neighbours=[]):
             return atom_index, connected
 
 
-def rotate_molecule_part(coords, rotation_vector, offset, angle):
+def rotation_matrix(axis, angle):
+    axis = np.asarray(axis)
+    axis = axis / math.sqrt(np.dot(axis, axis))
+    a = math.cos(angle / 2.0)
+    b, c, d = -axis * math.sin(angle / 2.0)
+    aa, bb, cc, dd = a * a, b * b, c * c, d * d
+    bc, ad, ac, ab, bd, cd = b * c, a * d, a * c, a * b, b * d, c * d
+    return np.array(
+        [
+            [aa + bb - cc - dd, 2 * (bc + ad), 2 * (bd - ac)],
+            [2 * (bc - ad), aa + cc - bb - dd, 2 * (cd + ab)],
+            [2 * (bd + ac), 2 * (cd - ab), aa + dd - bb - cc],
+        ]
+    )
+
+
+def rotate(axis, point, angle):
+    return np.dot(rotation_matrix(axis, angle), point)
+
+
+def rotate_molecule_part(coords, axis, offset, angle):
     result = coords.copy()
-    print(result)
-    print(offset)
     for index, atom in result.iterrows():
         atom_coords = np.array(atom['x':])
         atom_coords -= offset
 
-        d = angle_between_vectors(rotation_vector, atom_coords)
+        d = angle_between_vectors(axis, atom_coords)
         if d < math.pi / 2 or d > math.tau * 3 / 4:
-            # rotate
+            atom_coords = rotate(axis, atom_coords, angle)
             atom_coords += offset
             result.loc[index, 'x':] = atom_coords
 
-    print(result)
+    return result
 
 
 if __name__ == '__main__':
     molecule = convert_gjf_to_molecule('input.gjf')
     index, neighbours = find_atom_with_neighbours(molecule, 'C', {'C', 'N', 'O'})
-    rotation_vector = get_unit_vector(get_bond_vector(molecule, neighbours['N'], index))
+    rotation_axis = get_unit_vector(get_bond_vector(molecule, neighbours['N'], index))
 
-    rotate_molecule_part(
-        molecule._frame.copy(),
-        rotation_vector,
-        get_coords(molecule, neighbours['N']),
-        math.radians(360),
-    )
+    for angle in range(1, 361):
+        result = rotate_molecule_part(
+            molecule._frame.copy(),
+            rotation_axis,
+            get_coords(molecule, neighbours['N']),
+            math.radians(angle),
+        )
