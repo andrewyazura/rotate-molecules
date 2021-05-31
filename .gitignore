@@ -180,4 +180,5 @@ pip-selfcheck.json
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,virtualenv
 
 input.gjf
-results/*
+results/*.gjf
+!results/example_output_90.gjf
