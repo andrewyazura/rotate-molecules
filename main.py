@@ -74,7 +74,7 @@ def rotate_molecule_part(coords, axis, offset, angle):
             continue
 
         d = math.degrees(angle_between_vectors(axis, atom_coords))
-        if d < 90 or d > 270:
+        if d < 100 or d > 290:
             atom_coords = rotate(axis, atom_coords, angle)
             atom_coords = atom_coords + offset
             result.loc[index, 'x':] = atom_coords
