@@ -93,7 +93,7 @@ if __name__ == '__main__':
             get_coords(molecule, neighbours['N']),
             math.radians(angle),
         ).to_csv(
-            f'results/{angle}.gjf',
+            f'results/rot-{angle}.gjf',
             sep=' ',
             float_format='%.8f',
             index=False,
