@@ -1,6 +1,6 @@
 # Rotate molecules
 
-The purpose of this repo's code is to rotate a part of a molecule with the glycosidic bond around C-N bond.
+The purpose of this repo's code is to rotate a part of a molecule with the glycosidic bond around C-N bond. It creates 360 `.gjf` files, each file containing a modified molecule. 
 
 ## Note
 
