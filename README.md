@@ -51,3 +51,7 @@ On the next image you can see rotation axis painted white, nitrogen atom as the 
    ![image](https://user-images.githubusercontent.com/39884112/120294826-436a7080-c2cf-11eb-97b2-3dffea1d6a76.png)
 
 </details>
+
+## Result
+
+![rotate-molecule](https://user-images.githubusercontent.com/39884112/120298950-32bbf980-c2d3-11eb-9f5a-36f695e3e2be.gif)
