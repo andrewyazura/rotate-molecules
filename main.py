@@ -84,13 +84,12 @@ if __name__ == '__main__':
     rotation_axis = get_unit_vector(get_bond_vector(molecule, neighbours['N'], index))
 
     for angle in range(1, 361):
-        result = rotate_molecule_part(
+        rotate_molecule_part(
             molecule._frame.copy(),
             rotation_axis,
             get_coords(molecule, neighbours['N']),
             math.radians(angle),
-        )
-        result.to_csv(
+        ).to_csv(
             f'results/{angle}.gjf',
             sep=' ',
             float_format='%.8f',
