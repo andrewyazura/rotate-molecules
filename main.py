@@ -3,6 +3,7 @@ import math
 import chemcoord
 import numpy as np
 import pandas
+from progress.bar import PixelBar as Bar
 
 
 def convert_gjf_to_molecule(filename):
@@ -86,6 +87,7 @@ if __name__ == '__main__':
     index, neighbours = find_atom_with_neighbours(molecule, 'C', {'C', 'N', 'O'})
     rotation_axis = get_unit_vector(get_bond_vector(molecule, neighbours['N'], index))
 
+    pbar = Bar('Processing', max=360)
     for angle in range(1, 361):
         rotate_molecule_part(
             molecule._frame.copy(),
@@ -99,3 +101,7 @@ if __name__ == '__main__':
             index=False,
             header=False,
         )
+        pbar.next()
+
+    pbar.finish()
+    print('Done!')
