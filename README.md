@@ -1,10 +1,12 @@
 # Rotate molecules
 
-The purpose of this repo's code is to rotate a part of a molecule with the glycosidic bond around C-N bond. It creates 360 `.gjf` files, each file containing a modified molecule. 
+The purpose of this repo's code is to rotate a part of a molecule with the glycosidic bond around C-N bond. 
+It creates 360 `.gjf` files, each file containing a modified molecule. 
 
 ## Note
 
-This is a made-to-order project. It won't be maintained in the future.
+This is a made-to-order project. 
+It won't be maintained in the future.
 
 ## Main problem
 
@@ -16,6 +18,11 @@ I solved this by following this steps:
 2. Rotate each atom around rotation axis.
 3. Add N atom's coordinates to each of the atoms coordinates.
    1. So the N atom is now back in its place.
+
+### A better approach
+
+A better solution to this problem would be to build a graph corresponding to a molecule. 
+This way, if the path from an atom to nitrogen is shorter than to carbon, the atom should be fixed. 
 
 ## Example
 
@@ -43,7 +50,9 @@ The main goal is to rotate all the atoms above the C-N bond, while atoms below h
 
 </details>
 
-On the next image you can see rotation axis painted white, nitrogen atom as the origin point. To determine whether an atom should be rotated, an angle between a vector from the center nitrogene atom to the atom (marked yellow or red) and rotation axis (white) is calculated. If the angle is greater than 100 and less than 290, the atom is below the nitrogen atom and should be fixed.
+On the next image you can see rotation axis painted white, nitrogen atom as the origin point. 
+To determine whether an atom should be rotated, an angle between a vector from the center nitrogene atom to the atom (marked yellow or red) and rotation axis (white) is calculated. 
+If the angle is greater than 100 and less than 290, the atom is below the nitrogen atom and should be fixed.
 
 <details>
    <summary>Preview</summary>
