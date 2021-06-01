@@ -58,4 +58,4 @@ On the next image you can see rotation axis painted white, nitrogen atom as the 
 
 ## Endnote
 
-Software used to display molecules is Chemcraft
+Software used to display molecules is Chemcraft.
