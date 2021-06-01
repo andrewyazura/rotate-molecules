@@ -69,6 +69,9 @@ def rotate_molecule_part(coords, axis, offset, angle):
         atom_coords = np.array(atom['x':])
         atom_coords = atom_coords - offset
 
+        if not atom_coords.all():
+            continue
+
         d = math.degrees(angle_between_vectors(axis, atom_coords))
         if d < 90 or d > 270:
             atom_coords = rotate(axis, atom_coords, angle)
