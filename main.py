@@ -7,7 +7,9 @@ import pandas
 
 def convert_gjf_to_molecule(filename):
     coords = pandas.read_table(
-        filename, delim_whitespace=True, names=('atom', 'x', 'y', 'z')
+        filename,
+        delim_whitespace=True,
+        names=('atom', 'x', 'y', 'z'),
     )
     return chemcoord.Cartesian(frame=coords)
 
