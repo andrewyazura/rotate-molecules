@@ -43,7 +43,7 @@ The main goal is to rotate all the atoms above the C-N bond, while atoms below h
 
 </details>
 
-On the next image you can see rotation axis painted white, nitrogen atom as the origin point. To determine whether an atom should be rotated, an angle between a vector from the center nitrogene atom to the atom (marked yellow or red) and rotation axis (white) is calculated. If the angle is greater than 90 and less than 270, the atom is below the nitrogen atom and should be fixed.
+On the next image you can see rotation axis painted white, nitrogen atom as the origin point. To determine whether an atom should be rotated, an angle between a vector from the center nitrogene atom to the atom (marked yellow or red) and rotation axis (white) is calculated. If the angle is greater than 100 and less than 290, the atom is below the nitrogen atom and should be fixed.
 
 <details>
    <summary>Preview</summary>
