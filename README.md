@@ -2,6 +2,10 @@
 
 The purpose of this repo's code is to rotate part of molecule with the glycosidic bond around C-N bond.
 
+## Note
+
+This is a made-to-order project. It won't be maintained in the future.
+
 ## Main problem
 
 The main difficulty when rotating an atom (a point in 3D space) around a C-N bond was that the rotation axis isn't always passing through the origin.
